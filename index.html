@@ -49,6 +49,7 @@
     nav {
       display: flex;
       gap: 2rem;
+      flex-wrap: wrap;
     }
     nav a {
       color: var(--text-color);
@@ -158,14 +159,14 @@
       font-weight: 600;
     }
 
-    /* PROJECTS & CONTACT */
-    .projects, .contact-container {
+    /* PROJECTS, CERTIFICATES & CONTACT */
+    .projects, .contact-container, .certificates-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
       gap: 2rem;
     }
-    .card, .contact-card {
+    .card, .contact-card, .certificate-card {
       background: var(--card-bg);
       border-radius: 15px;
       padding: 1.5rem;
@@ -174,7 +175,7 @@
       transition: transform 0.3s, box-shadow 0.3s;
       box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     }
-    .card:hover, .contact-card:hover {
+    .card:hover, .contact-card:hover, .certificate-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 0 25px var(--primary-color);
     }
@@ -188,7 +189,7 @@
 
     @media(max-width: 768px){
       .skills { gap: 2rem; }
-      .card, .contact-card { width: 200px; }
+      .card, .contact-card, .certificate-card { width: 200px; }
     }
   </style>
 </head>
@@ -199,7 +200,7 @@
       <a href="#about">About</a>
       <a href="#skills">Skills</a>
       <a href="#projects">Projects</a>
-      <a href="#skills">certificates</a>
+      <a href="#certificates">Certificates</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
@@ -214,9 +215,9 @@
     <div class="about-container" data-aos="fade-up">
       <h2>About Me</h2>
       <p>
-       Hello! I’m Kiruthika, a web developer with a strong passion for creating intuitive and visually appealing websites.</br>
-       I have experience in both front-end and back-end development, using technologies like HTML, CSS, JavaScript, React, and Node.js
-       I enjoy turning complex problems into simple, elegant solutions and am constantly learning new technologies to improve my skills..
+        Hello! I’m Kiruthika, a web developer with a strong passion for creating intuitive and visually appealing websites.<br>
+        I have experience in both front-end and back-end development, using technologies like HTML, CSS, JavaScript, React, and Node.js.<br>
+        I enjoy turning complex problems into simple, elegant solutions and am constantly learning new technologies to improve my skills.
       </p>
     </div>
   </section>
@@ -257,14 +258,14 @@
         <div class="percentage">0%</div>
         <div class="skill-name">JavaScript</div>
       </div>
-      <!-- database -->
+      <!-- Database -->
       <div class="skill-circle" data-percentage="80">
         <svg>
           <circle class="bg" cx="60" cy="60" r="50"></circle>
           <circle class="progress" cx="60" cy="60" r="50"></circle>
         </svg>
         <div class="percentage">0%</div>
-        <div class="skill-name">database</div>
+        <div class="skill-name">Database</div>
       </div>
     </div>
   </section>
@@ -276,11 +277,14 @@
       <div class="card">📱 Video Uploader</div>
     </div>
   </section>
-  
+
   <section id="certificates">
-      <h2>Certificates</h2>
-      <a href="kiruthika.jpg.jpg">✔ Blockchain Fundamentals – IBM</a>
-    </section>
+    <h2>Certificates</h2>
+    <div class="certificates-container">
+      <a href="kiruthika.jpg.jpg" target="_blank" class="certificate-card">✔ Blockchain Fundamentals – IBM</a>
+      <!-- Add more certificates here -->
+    </div>
+  </section>
 
   <section id="contact">
     <h2 class="section-title">Contact</h2>
@@ -325,11 +329,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
-
