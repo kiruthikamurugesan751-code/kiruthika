@@ -1,387 +1,331 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>kiruthika Portfolio</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kiruthika Portfolio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
+    :root {
+      --bg-dark: #0d1117;
+      --primary-color: #00f5d4;
+      --secondary-color: #f72585;
+      --text-color: #fff;
+      --card-bg: rgba(255, 255, 255, 0.08);
+      --glass-bg: rgba(255, 255, 255, 0.1);
+    }
+
+    /* GLOBAL FONT & BASE */
     * {
+      font-family: 'Poppins', sans-serif;
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-    }
-    html {
-      scroll-behavior: smooth;
     }
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: #f5f7fa;
-      color: #2b2525;
+      background: var(--bg-dark);
+      color: var(--text-color);
+      overflow-x: hidden;
+      font-size: 16px;
+      line-height: 1.6;
     }
+    h1, h2, h3, h4, h5 {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+    }
+    p, a, li, span, div {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 400;
+    }
+
     header {
-      background: linear-gradient(135deg, #1e3c72, #2a5298);
-      color: white;
-      text-align: center;
-      padding: 3rem 1rem 5rem;
-      position: relative;
+      background: var(--glass-bg);
+      backdrop-filter: blur(10px);
+      padding: 1rem 2rem;
+      display: flex;
+      justify-content: center;
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
     }
-    .profile-picture {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  object-fit: cover;
-  border: 4px solid #fff;
-  position: relative;
-  margin-top: -80px;
-  margin-bottom: 1rem;
-}
-    .tabs {
+    nav {
+      display: flex;
+      gap: 2rem;
+    }
+    nav a {
+      color: var(--text-color);
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+    nav a:hover {
+      color: var(--primary-color);
+    }
+
+    section {
+      padding: 7rem 2rem 3rem;
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      gap: 1.5rem;
+    }
+    .hero img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      border: 4px solid var(--primary-color);
+      box-shadow: 0 0 20px var(--primary-color);
+      animation: float 5s infinite ease-in-out;
+      object-fit: cover;
+    }
+    @keyframes float {
+      0% { transform: translateY(0); }
+      50% { transform: translateY(-15px); }
+      100% { transform: translateY(0); }
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.6rem 1.3rem;
+      background: var(--primary-color);
+      border-radius: 25px;
+      color: #000;
+      font-weight: 600;
+      text-decoration: none;
+      transition: 0.4s;
+    }
+    .btn:hover {
+      background: var(--secondary-color);
+      color: #fff;
+      box-shadow: 0 0 15px var(--secondary-color);
+    }
+
+    /* ABOUT */
+    .about-container {
+      max-width: 900px;
+      margin: auto;
+      background: var(--glass-bg);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+
+    /* SKILLS */
+    .skills {
+      max-width: 900px;
+      margin: auto;
+      display: flex;
+      justify-content: center;
+      gap: 3rem;
+      flex-wrap: wrap;
+    }
+    .skill-circle {
+      position: relative;
+      width: 120px;
+      height: 120px;
+      cursor: default;
+      transition: transform 0.3s;
+    }
+    .skill-circle:hover {
+      transform: scale(1.1);
+    }
+    .skill-circle svg {
+      transform: rotate(-90deg);
+      width: 100%;
+      height: 100%;
+    }
+    .skill-circle circle {
+      fill: none;
+      stroke-width: 10;
+      stroke-linecap: round;
+    }
+    .skill-circle .bg {
+      stroke: #333;
+    }
+    .skill-circle .progress {
+      stroke: url(#grad);
+      stroke-dasharray: 314;
+      stroke-dashoffset: 314;
+      transition: stroke-dashoffset 1.5s ease;
+    }
+    .skill-circle .percentage {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-weight: 600;
+      font-size: 1.2rem;
+      color: var(--primary-color);
+    }
+    .skill-name {
+      text-align: center;
+      margin-top: 0.5rem;
+      font-weight: 600;
+    }
+
+    /* PROJECTS & CONTACT */
+    .projects, .contact-container {
       display: flex;
       flex-wrap: wrap;
       justify-content: center;
-      background: white;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      gap: 2rem;
     }
-    .tabs button {
-      padding: 0.8rem 1.5rem;
-      background: #ffffff;
-      border: 2px solid #2a5298;
-      border-radius: 8px;
-      margin: 0.5rem;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: 500;
-      color: #2a5298;
-      transition: all 0.3s ease;
+    .card, .contact-card {
+      background: var(--card-bg);
+      border-radius: 15px;
+      padding: 1.5rem;
+      width: 260px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
     }
-    .tabs button:hover,
-    .tabs button.active {
-      background: #135ee0;
-      color: #fff;
-      border-color: #1752b9;
+    .card:hover, .contact-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 0 25px var(--primary-color);
     }
-    section {
-      max-width: 900px;
-      margin: auto;
-      background: white;
-      padding: 2rem;
-      margin-top: 2rem;
-      border-radius: 12px;
-      box-shadow: 0 0 10px rgba(0,0,0,0.05);
-      display: none;
-      opacity: 0;
-      transform: translateY(30px);
-      transition: all 0.5s ease;
-    }
-    section.active {
-      display: block;
-      opacity: 1;
-      transform: translateY(0);
-    }
-    h2 {
-      color: #2a5298;
-      margin-bottom: 1rem;
-    }
-    ul li {
-      margin-bottom: 0.5rem;
-    }
-    .download-button {
-      display: inline-block;
-      background: #2a5298;
-      color: white;
-      padding: 0.5rem 1rem;
-      border-radius: 20px;
-      text-decoration: none;
-      margin-top: 1rem;
-    }
-    .download-button:hover {
-      background: #1e3c72;
-    }
+
     footer {
       text-align: center;
-      padding: 1.5rem;
-      background: #2a5298;
-      color: white;
-      margin-top: 3rem;
+      padding: 1rem;
+      background: var(--glass-bg);
+      border-top: 1px solid rgba(255, 255, 255, 0.2);
     }
-    .modal {
-      display: none;
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.5);
-      justify-content: center;
-      align-items: center;
-    }
-    .modal-content {
-      background: white;
-      padding: 2rem;
-      border-radius: 10px;
-      width: 300px;
-      text-align: center;
-      animation: fadeIn 0.3s ease-in-out;
-    }
-    .modal-content input {
-      width: 100%;
-      padding: 10px;
-      margin-top: 10px;
-      font-size: 16px;
-      border-radius: 6px;
-    }
-    .modal-content button {
-      background: #2a5298;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      margin-top: 1rem;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    .modal-content .error {
-      color: red;
-      font-size: 14px;
-      margin-top: 10px;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.95); }
-      to { opacity: 1; transform: scale(1); }
-    }
-    @media (max-width: 600px) {
-      .tabs button {
-        flex: 1 0 100%;
-        padding: 0.75rem;
-        font-size: 15px;
-      }
-      .profile-picture {
-        position: static;
-        margin-bottom: 1rem;
-      }
-      header {
-        padding-bottom: 2rem;
-      }
-    }
-    .dark-mode {
-      background-color: #121212;
-      color: #f5f5f5;
-    }
-    .dark-mode section {
-      background-color: #1e1e1e;
-      color: #f5f5f5;
-    }
-    .dark-mode header {
-      background: linear-gradient(135deg, #000000, #2a2a2a);
-    }
-    .dark-mode .tabs button {
-      background-color: #2a2a2a;
-      color: #f5f5f5;
-      border-color: #555;
-    }
-    .dark-mode .tabs button.active,
-    .dark-mode .tabs button:hover {
-      background-color: #444;
-      color: #fff;
-    }
-    .dark-toggle {
-      position: absolute;
-      top: 1rem;
-      right: 1rem;
-      background: #fff;
-      border: none;
-      padding: 0.5rem 1rem;
-      font-weight: bold;
-      cursor: pointer;
-      border-radius: 5px;
-      color: #2a5298;
+
+    /* RESPONSIVE */
+    @media(max-width: 768px){
+      .hero img { width: 150px; height: 150px; }
+      .skills { gap: 2rem; }
+      .card, .contact-card { width: 200px; }
     }
   </style>
 </head>
 <body>
-<header style="display: flex; flex-direction: row; align-items: center; justify-content: space-between; padding: 2rem">
-  <button class="dark-toggle" onclick="toggleDarkMode()">Toggle Dark Mode</button>
-  <img src="./Vignesh Mathiyalagan.jpg" alt="Profile Picture" class="profile-picture" id="profileImage" style="margin: 0 1rem 0 0; align-self: flex-start;">
-  <div style="text-align: left;">
-    <h1>Vignesh Mathiyalagan</h1>
-    
-  </div>
-  <p>Electronics Engineer | Cybersecurity Enthusiast</p>
-  <input type="file" id="fileInput" accept="image/*" style="display:none">
-  <button onclick="showModal()">Change Profile</button>
-</header>
+  <header>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-<div class="tabs">
-  <button class="tab-btn active" data-tab="about">About</button>
-  <button class="tab-btn" data-tab="certificates">Certificates</button>
-  <button class="tab-btn" data-tab="experience">Experience</button>
-  <button class="tab-btn" data-tab="education">Education</button>
-  <button class="tab-btn" data-tab="skills">Skills</button>
-  <button class="tab-btn" data-tab="projects">Projects</button>
-  <button class="tab-btn" data-tab="resume">Resume</button>
-  <button class="tab-btn" data-tab="contact">Contact</button>
-</div>
+  <section class="hero" id="home">
+    <img src="img.jpg" alt="Kiruthika">
+    <h1>Hi, I'm <span style="color:var(--primary-color)">Kiruthika</span></h1>
+    <p>Creative Web Designer 🚀</p>
+    <a href="#about" class="btn">About Me</a>
+  </section>
 
-<section id="about" class="active">
-  <h2>About Me</h2>
-  <p>I'm a <b>cybersecurity expert</b> and technology enthusiast with over 7 years of experience. I help organizations build secure systems and educate others about online safety. I’m passionate about ethical hacking, digital forensics, and emerging technologies.</p>
-</section>
-
-<section id="education">
-  <h2>Education</h2>
-  <p>Anna University – B.E. in Electrical & Electronics Engineering</p>
-</section>
-
-<section id="skills">
-  <h2>Skills</h2>
-  <ul>
-    <li>Cybersecurity</li>
-    <li>Internet of Things</li>
-    <li>Cloud Computing</li>
-    <li>Python</li>
-    <li>IBM Cloud</li>
-    <li>Machine Learning & AI</li>
-    <li>Java</li>
-    <li>Blockchain</li>
-    <li>C++</li>
-    <li>JavaScript</li>
-  </ul>
-</section>
-
-<section id="projects">
-  <h2>Projects</h2>
-  <ul>
-    <li><a href="#">AI-Based Alternator Control System</a></li>
-    <li><a href="https://github.com/techtrainer20/blockchain.git" target="_blank">Cloud Security with IBM</a></li>
-    <li><a href="#">IBM Chatbot</a></li>
-    <li><a href="#">Generic Chatbot</a></li>
-  </ul>
-</section>
-
-<section id="resume">
-  <h2>Resume</h2>
-  <a href="./Name list for IBM SkillsBuild.pdf" target="_blank" class="download-button">Download CV</a>
-</section>
-
-<section id="contact">
-  <h2>Contact</h2>
-  <p>Email: <a href="mailto:vignesh@example.com">vignesh@example.com</a></p>
-  <p>Phone: +91-9876543210</p>
-  <p>Location: Chennai, India</p>
-  <div style="margin-top: 1rem;">
-    <a href="https://linkedin.com/in/vignesh" target="_blank">LinkedIn</a> |
-    <a href="https://github.com/vignesh" target="_blank">GitHub</a> |
-    <a href="https://twitter.com/vignesh" target="_blank">Twitter</a> |
-    <a href="https://instagram.com/vignesh" target="_blank">Instagram</a>
-  </div>
-</section>
-
-<section id="certificates">
-  <h2>Certificates</h2>
-  <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center;">
-    <div style="text-align: center;">
-      <a href="https://skills.yourlearning.ibm.com/certificate/share/8a8c01e2efewogICJvYmplY3RJZCIgOiAiVVJMLVBMTFYyTzZVRlRVIiwKICAibGVhcm5lckNOVU0iIDogIjE4OTkzMTdSRUciLAogICJvYmplY3RUeXBlIiA6ICJBQ1RJVklUWSIKfQc61cb1757c-10" target="_blank">
-        <img src="./ibmcert.png" alt="MS-356" style="max-width: 200px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-      </a>
-      <p>Cybersecurity Essentials – Cisco</p>
+  <section id="about">
+    <div class="about-container" data-aos="fade-up">
+      <h2>About Me</h2>
+      <p>
+        I’m Kiruthika 👋 — a creative Web Designer from India.  
+        I love making websites with <b>3D effects, modern design</b> and smooth UI/UX.  
+        My passion is to build websites that are <b>beautiful + functional</b>.
+      </p>
     </div>
-    <div style="text-align: center;">
-      <a href="https://example.com/certificate2" target="_blank">
-        <img src="certificate2.jpg" alt="Blockchain Fundamentals – IBM" style="max-width: 200px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-      </a>
-      <p>Blockchain Fundamentals – IBM</p>
+  </section>
+
+  <section id="skills">
+    <h2 class="section-title">Skills</h2>
+    <div class="skills">
+      <!-- HTML -->
+      <div class="skill-circle" data-percentage="95">
+        <svg>
+          <defs>
+            <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="0%">
+              <stop offset="0%" stop-color="var(--primary-color)" />
+              <stop offset="100%" stop-color="var(--secondary-color)" />
+            </linearGradient>
+          </defs>
+          <circle class="bg" cx="60" cy="60" r="50"></circle>
+          <circle class="progress" cx="60" cy="60" r="50"></circle>
+        </svg>
+        <div class="percentage">0%</div>
+        <div class="skill-name">HTML</div>
+      </div>
+      <!-- CSS -->
+      <div class="skill-circle" data-percentage="85">
+        <svg>
+          <circle class="bg" cx="60" cy="60" r="50"></circle>
+          <circle class="progress" cx="60" cy="60" r="50"></circle>
+        </svg>
+        <div class="percentage">0%</div>
+        <div class="skill-name">CSS</div>
+      </div>
+      <!-- JS -->
+      <div class="skill-circle" data-percentage="75">
+        <svg>
+          <circle class="bg" cx="60" cy="60" r="50"></circle>
+          <circle class="progress" cx="60" cy="60" r="50"></circle>
+        </svg>
+        <div class="percentage">0%</div>
+        <div class="skill-name">JavaScript</div>
+      </div>
     </div>
-    <div style="text-align: center;">
-      <a href="https://example.com/certificate3" target="_blank">
-        <img src="certificate3.jpg" alt="Machine Learning with Python – Coursera" style="max-width: 200px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1);">
-      </a>
-      <p>Machine Learning with Python – Coursera</p>
+  </section>
+
+  <section id="projects">
+    <h2 class="section-title">Projects</h2>
+    <div class="projects">
+      <div class="card">🌐 teacher interview</div>
+      <div class="card">📱 vedio uploder</div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="experience">
-  <h2>Experience</h2>
-  <ul>
-    <li><b>Cybersecurity Analyst</b> – SecureNet Pvt Ltd (2021–Present)<br>Monitored, detected, and mitigated network threats using SIEM tools.</li>
-    <li><b>Penetration Tester</b> – Freelance (2019–2021)<br>Performed ethical hacking assessments for startups and provided mitigation reports.</li>
-    <li><b>Intern – IBM Cloud Division</b> (2018)<br>Worked on automation scripts and cloud deployment prototypes.</li>
-  </ul>
-</section>
+  <section id="contact">
+    <h2 class="section-title">Contact</h2>
+    <div class="contact-container">
+      <div class="contact-card">📧 <br> kiruthika@gmail.com</div>
+      <div class="contact-card">📞 <br> +91 98765 43210</div>
+      <div class="contact-card">💬 <br> WhatsApp Me</div>
+    </div>
+  </section>
 
-<footer>
-  <p>&copy; 2025 Vignesh Mathiyalagan. All rights reserved.</p>
-</footer>
+  <footer>
+    <p>© 2025 Kiruthika Portfolio | All rights reserved</p>
+  </footer>
 
-<div class="modal" id="passwordModal">
-  <div class="modal-content">
-    <h3>Enter Password</h3>
-    <input type="password" id="passwordInput" placeholder="Password">
-    <div class="error" id="errorMsg"></div>
-    <button onclick="checkPassword()">Submit</button>
-  </div>
-</div>
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    AOS.init({ duration: 1200 });
 
-<script>
-  const fileInput = document.getElementById('fileInput');
-  const profileImage = document.getElementById('profileImage');
-  const modal = document.getElementById('passwordModal');
-  const passwordInput = document.getElementById('passwordInput');
-  const errorMsg = document.getElementById('errorMsg');
-  const correctPassword = "1234";
+    const skillCircles = document.querySelectorAll('.skill-circle');
+    const observer = new IntersectionObserver(entries=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          const circle = entry.target.querySelector('.progress');
+          const percentageElem = entry.target.querySelector('.percentage');
+          const percent = entry.target.dataset.percentage;
+          const radius = circle.r.baseVal.value;
+          const circumference = 2 * Math.PI * radius;
+          circle.style.strokeDasharray = circumference;
+          let current = 0;
+          const interval = setInterval(()=>{
+            if(current >= percent) clearInterval(interval);
+            const offset = circumference - (current / 100 * circumference);
+            circle.style.strokeDashoffset = offset;
+            percentageElem.textContent = current + '%';
+            current++;
+          }, 15);
+        }
+      });
+    }, { threshold: 0.5 });
 
-  const savedImage = localStorage.getItem("profileImage");
-  if (savedImage) {
-    profileImage.src = savedImage;
-  }
-
-  function showModal() {
-    modal.style.display = 'flex';
-    passwordInput.value = '';
-    errorMsg.textContent = '';
-    passwordInput.focus();
-  }
-
-  function checkPassword() {
-    if (passwordInput.value === correctPassword) {
-      modal.style.display = 'none';
-      fileInput.click();
-    } else {
-      errorMsg.textContent = "Incorrect password!";
-    }
-  }
-
-  fileInput.addEventListener('change', function () {
-    const file = this.files[0];
-    if (file && file.type.startsWith('image/')) {
-      const reader = new FileReader();
-      reader.onload = function (e) {
-        profileImage.src = e.target.result;
-        localStorage.setItem("profileImage", e.target.result);
-      };
-      reader.readAsDataURL(file);
-    } else {
-      alert("Please select a valid image file.");
-    }
-  });
-
-  window.onclick = function(e) {
-    if (e.target === modal) modal.style.display = "none";
-  };
-
-  const tabButtons = document.querySelectorAll('.tab-btn');
-  const tabSections = document.querySelectorAll('section');
-
-  tabButtons.forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelector('.tab-btn.active').classList.remove('active');
-      btn.classList.add('active');
-      tabSections.forEach(section => section.classList.remove('active'));
-      document.getElementById(btn.getAttribute('data-tab')).classList.add('active');
-    });
-  });
-
-  function toggleDarkMode() {
-    document.body.classList.toggle('dark-mode');
-  }
-</script>
+    skillCircles.forEach(circle => observer.observe(circle));
+  </script>
 </body>
 </html>
-
